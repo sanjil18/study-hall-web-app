@@ -1,0 +1,84 @@
+/* HEADER CONTAINER */
+.header-container {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: white;
+  padding: 20px;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-bottom: 5px solid orange;
+}
+
+/* FLEXBOX FOR HEADER CONTENT */
+.header-content {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: space-between;
+}
+
+/* LOGO IMAGE */
+.img1 {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* HEADER TEXT */
+.header-text {
+  text-align: center;
+  flex: 1;
+}
+
+/* TEXT STYLES */
+.he1 {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.he2 {
+  font-size: 40px;
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.he3 {
+  font-size: 30px;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVENESS */
+@media (max-width: 768px) {
+  .header-container {
+    height: auto;
+    padding: 15px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img1 {
+    width: 150px;
+  }
+
+  .he1 {
+    font-size: 40px;
+  }
+
+  .he2 {
+    font-size: 30px;
+  }
+
+  .he3 {
+    font-size: 20px;
+  }
+}

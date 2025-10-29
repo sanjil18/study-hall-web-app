@@ -1,0 +1,34 @@
+.p12
+{
+    font-size: 40px;
+    color: blue;
+    font-family: 'Times New Roman', Times, serif;
+    display: inline;
+    margin-right:60px; 
+}
+.nav1
+{
+    background-color: aqua;
+    width:auto;
+    height: 50px;
+    align-items: Right;
+    justify-content: center;
+    padding-top: 20px;
+    justify-content: flex-end;
+    
+}
+.btnpr
+{
+    width:150px;
+    height: 40px;
+    background-color: aqua;
+    border-radius: 10px;
+    font-size: 30px;
+    display:inline;
+    align-items:left    ;
+    align-items: center;
+    margin-right:60px; 
+    background-color: bisque;
+    justify-self: left;
+    
+}

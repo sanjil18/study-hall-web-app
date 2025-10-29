@@ -1,0 +1,92 @@
+/* Scoped Styles for Login Page and SignUp Page */
+
+/* .login-page and .signup-page wrapper to avoid global affects */
+.login-page, .signup-page {
+  background-color: lightyellow;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+/* Consistent container for login/signup */
+.login-container, .signup-container {
+  background-color: #fff;
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for the container */
+.login-container:hover, .signup-container:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styling for login and signup */
+.login-title, .signup-title {
+  font-size: 28px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input fields style for username and password */
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus effect on input fields */
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: none;
+  border-color: #00bcd4;
+  background-color: #fff;
+}
+
+/* Error message styling */
+.error-message {
+  text-align: center;
+  font-size: 18px;
+  color: #d9534f;
+  margin-top: 10px;
+}
+
+/* Button style for login and signup buttons */
+.btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  color: white;
+  background-color: #00bcd4; /* Teal color */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the buttons */
+.btn:hover {
+  background-color: #0097a7;
+}
+
+/* Link styling */
+p a {
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}

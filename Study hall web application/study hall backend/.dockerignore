@@ -1,0 +1,20 @@
+# Build outputs
+target/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Log files
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp

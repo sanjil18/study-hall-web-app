@@ -1,0 +1,112 @@
+/* Base container styling */
+.BAS {
+    background-color: #fff;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 100%;
+    padding: 30px;
+    margin: 40px auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Hover effect for container */
+  .BAS:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Styling for form input fields */
+  .BAS input[type="number"],
+  .BAS input[type="time"] {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    margin: 10px 0;
+    transition: border-color 0.3s ease;
+    height: 50px;
+  }
+  
+  /* Focus effect for input fields */
+  .BAS input[type="number"]:focus,
+  .BAS input[type="time"]:focus {
+    border-color: #00bcd4;
+    outline: none;
+  }
+  
+  /* Button styling */
+  .btn1 {
+    border-radius: 8px;
+    background-color: #00bcd4;
+    color: white;
+    font-size: 18px;
+    width: 160px;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+  }
+  
+  .btn1:hover {
+    background-color: #0097a7;
+  }
+  
+  /* Button group container with responsive flex */
+  .btngp {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  /* Heading styles */
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Container for form */
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .BAS {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .btn1 {
+      width: 100%;
+      font-size: 16px;
+    }
+  
+    .btngp {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    h3 {
+      font-size: 22px;
+    }
+  }
+  
