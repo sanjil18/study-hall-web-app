@@ -15,7 +15,8 @@ services:
 
   backend:
     build:
-      context: "./study hall backend"
+      
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8082:8080"  # Changed to 8082:8080
