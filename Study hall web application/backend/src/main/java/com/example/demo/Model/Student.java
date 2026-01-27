@@ -7,10 +7,10 @@ import jakarta.persistence.*;
 public class Student {
 
     @Id
-    @Column(name = "Reg_No")  // Match exact column name
+    @Column(name = "Reg_No")
     private String regNo;
 
-    @Column(name = "Password")  // Match exact column name
+    @Column(name = "Password")
     private String password;
 
     // Getters and setters

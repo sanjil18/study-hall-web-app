@@ -34,7 +34,4 @@ public class StudentController {
     public void deleteStudent(@PathVariable String regNo) {
         studentService.DeleteStudent(regNo);
     }
-
-    // Add the LoginRequest class inside the controller
-
 }

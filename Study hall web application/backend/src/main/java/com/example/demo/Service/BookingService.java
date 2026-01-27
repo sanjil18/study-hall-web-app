@@ -13,33 +13,49 @@ public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public Bookings bookSeat(String Reg_No, int seatNo) {
-        // Check if the seat is already booked by any student
-        Bookings existingBooking = bookingRepository.findBySeatNo(seatNo);
-        if (existingBooking != null) {
+    /**
+     * Attempts to book a seat using data provided in the Bookings object.
+     * Checks for existing seat booking and existing student booking.
+     * @param newBooking The Bookings object containing regNo and seatNo.
+     * @return The saved Bookings object or null if booking fails.
+     */
+    public Bookings bookSeat(Bookings newBooking) {
+        // 1. Check if the seat is already booked (SeatNo is the primary key)
+        if (bookingRepository.findBySeatNo(newBooking.getSeatNo()) != null) {
             return null; // Seat is already booked
         }
 
-        // Create a new booking
-        Bookings newBooking = new Bookings();
-        newBooking.setRegNo(Reg_No);
-        newBooking.setSeatNo(seatNo);
+        // 2. Check if the student already has a booking
+        if (bookingRepository.findByRegNo(newBooking.getRegNo()) != null) {
+            // Student has an existing booking (Assuming one booking per student)
+            return null;
+        }
+
+        // 3. Set default timeLimit if not provided (Crucial for non-null columns)
+        if (newBooking.getTimeLimit() == null || newBooking.getTimeLimit().isEmpty()) {
+            // Use a default or current timestamp string
+            newBooking.setTimeLimit("N/A - Set upon booking");
+        }
+
         return bookingRepository.save(newBooking);
     }
 
-    public Bookings getBookingByStudent(String Reg_No) {
-        return bookingRepository.findByRegNo(Reg_No);
+    public Bookings getBookingByStudent(String regNo) {
+        return bookingRepository.findByRegNo(regNo);
     }
-    public Bookings GetBookingById(int id)
-    {
+
+    // Standardized method name
+    public Bookings getBookingById(int id) {
+        // Since ID is SeatNo, findBySeatNo is used.
         return bookingRepository.findBySeatNo(id);
     }
-    public List<Bookings> getAllBookings()
-    {
-         return bookingRepository.findAll();
+
+    public List<Bookings> getAllBookings() {
+        return bookingRepository.findAll();
     }
-    public void DeleteSeat(int id)
-    {
+
+    // Standardized method name (was DeleteSeat)
+    public void deleteBooking(int id) {
         bookingRepository.deleteById(id);
     }
 }

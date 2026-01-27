@@ -28,14 +28,17 @@ public class StudentService {
         }
         return null;
     }
-    public void DeleteStudent(String regNo)
-    {
-        Bookings booking=bookingRepository.findByRegNo(regNo);
-        int id=booking.getSeatNo();
-        if(booking!=null)
-        {
-            bookingService.DeleteSeat(id);
+
+    public void DeleteStudent(String regNo) {
+        Bookings booking = bookingRepository.findByRegNo(regNo);
+
+        // *** CRITICAL FIX: Only try to delete booking if one exists ***
+        if (booking != null) {
+            // Use the updated service method name
+            bookingService.deleteBooking(booking.getSeatNo());
         }
+
+        // Delete the student record
         studentRepository.deleteById(regNo);
     }
 }

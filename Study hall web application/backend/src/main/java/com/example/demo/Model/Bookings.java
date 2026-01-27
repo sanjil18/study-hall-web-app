@@ -7,16 +7,16 @@ import jakarta.persistence.*;
 public class Bookings {
 
     @Id
-    @Column(name = "SeatNo")  // Match exact column name
+    @Column(name = "SeatNo")
     private int seatNo;
 
-    @Column(name = "Timel.init")  // Match exact column name
-    private String timeLimit;
+    @Column(name = "Timel.init")
+    private String timeLimit; // Consider using LocalDateTime for better date/time handling
 
-    @Column(name = "Reg_No")  // Match exact column name
+    @Column(name = "Reg_No")
     private String regNo;
 
-    // Getters and setters
+    // Getters and setters (Crucial for Jackson JSON mapping)
     public int getSeatNo() {
         return seatNo;
     }

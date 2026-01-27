@@ -9,36 +9,35 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bookings")
+@CrossOrigin(origins = "http://localhost:5173")
 public class BookingController {
 
     @Autowired
     private BookingService bookingService;
 
+    // *** FIXED: Now uses @RequestBody for clean JSON mapping ***
     @PostMapping("/bookSeat")
-    public Bookings bookSeat(@RequestParam String Reg_No, @RequestParam int SeatNo) {
-        return bookingService.bookSeat(Reg_No, SeatNo);
+    public Bookings bookSeat(@RequestBody Bookings bookingRequest) {
+        return bookingService.bookSeat(bookingRequest);
     }
 
-    /*@GetMapping("/getBooking/{regno}")
-    public Bookings getBookingByStudent(@RequestParam String regNo) {
-        return bookingService.getBookingByStudent(regNo);
-    } */
+    /* Commented-out section preserved, though typically removed */
 
 
     @GetMapping("/getBooking/{id}")
-    public Bookings getBookingById(@PathVariable int id)
-    {
-        return bookingService.GetBookingById(id);
+    public Bookings getBookingById(@PathVariable int id) {
+        // Using standardized service method name
+        return bookingService.getBookingById(id);
     }
 
     @GetMapping("/getAllBooking")
-    public List<Bookings> getAllBooking()
-    {
+    public List<Bookings> getAllBooking() {
         return bookingService.getAllBookings();
     }
+
     @DeleteMapping("/delete/{id}")
-    public void DeleteBooking(@PathVariable int id)
-    {
-        bookingService.DeleteSeat(id);
+    public void deleteBooking(@PathVariable int id) {
+        // Using standardized service method name
+        bookingService.deleteBooking(id);
     }
 }

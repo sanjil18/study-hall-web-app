@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
-    Student findByRegNo(String regNo);  // ✅ Use camelCase (matches field name)
+    Student findByRegNo(String regNo);
 }
