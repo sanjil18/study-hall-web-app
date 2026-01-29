@@ -27,16 +27,19 @@ const SeatBooking = () => {
     e.preventDefault();
 
     const url = existingSeat 
-      ? `http://localhost:5000/update-seat/${seatNo}` 
-      : 'http://localhost:5000/book-seat';
+      ? `http://localhost:8082/bookings/update-seat/${seatNo}` 
+      : 'http://localhost:8082/bookings/bookSeat';
 
     const method = existingSeat ? 'PUT' : 'POST';
+
+    // Get regNo from localStorage (saved during login)
+    const regNo = localStorage.getItem('regNo');
 
     try {
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studentId: 1, seatNo, timeLimit: time }),
+        body: JSON.stringify({ regNo, seatNo: parseInt(seatNo), timeLimit: time }),
       });
 
       const data = await response.json();
@@ -48,6 +51,7 @@ const SeatBooking = () => {
         alert(data.error || 'Failed to process request.');
       }
     } catch (error) {
+      console.error('Booking error:', error);
       alert('An error occurred. Please try again.');
     }
   };

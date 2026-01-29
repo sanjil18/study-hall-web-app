@@ -10,7 +10,7 @@ public class Bookings {
     @Column(name = "SeatNo")
     private int seatNo;
 
-    @Column(name = "Timel.init")
+    @Column(name = "TimeLimit")
     private String timeLimit; // Consider using LocalDateTime for better date/time handling
 
     @Column(name = "Reg_No")

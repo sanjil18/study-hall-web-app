@@ -14,7 +14,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBookedSeats = async () => {
       try {
-        const response = await fetch('http://localhost:5000/booked-seats');
+        const response = await fetch('http://localhost:8082/booked-seats');
         if (!response.ok) {
           throw new Error('Failed to fetch booked seats');
         }
@@ -33,7 +33,7 @@ const Home = () => {
   // Handle seat deletion
   const handleDelete = async (seatsNo) => {
     try {
-      const response = await fetch(`http://localhost:5000/delete-seat/${seatsNo}`, {
+      const response = await fetch(`http://localhost:8082/delete-seat/${seatsNo}`, {
         method: 'DELETE',
       });
 

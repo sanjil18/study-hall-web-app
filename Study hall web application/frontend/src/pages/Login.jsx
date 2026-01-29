@@ -33,6 +33,8 @@ const Login = () => {
       const data = await response.json();
 
       if (data) {
+        // Save regNo to localStorage for later use in booking
+        localStorage.setItem('regNo', regNo);
         alert('Login successful!');
         navigate('/home');
       } else {
