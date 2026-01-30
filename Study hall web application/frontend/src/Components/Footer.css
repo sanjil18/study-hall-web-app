@@ -3,19 +3,19 @@
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: white;
   text-align: center;
-  padding: 3rem 2rem;
+  padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 3vw, 2rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.5rem;
+  gap: clamp(1rem, 3vw, 1.5rem);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
   border-top: 3px solid var(--primary-color);
-  margin-top: 4rem;
+  margin-top: clamp(2rem, 5vw, 4rem);
 }
 
 /* Main Text */
 .f1 {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 3vw, 1.125rem);
   font-weight: 600;
   margin: 0;
   text-transform: uppercase;
@@ -27,7 +27,7 @@
 .footer-link {
   color: var(--secondary-color);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: 500;
   transition: all 0.3s ease;
   display: inline-block;
@@ -45,9 +45,10 @@
 
 /* Contact Info */
 .f2 {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
   margin: 0.25rem 0;
   opacity: 0.9;
+}
   display: flex;
   align-items: center;
   justify-content: center;

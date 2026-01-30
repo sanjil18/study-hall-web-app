@@ -9,26 +9,26 @@ body {
 /* Main Container */
 .grp2 {
   background: white;
-  width: 95%;
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 2.5rem;
+  width: clamp(280px, 90vw, 1200px);
+  margin: clamp(1rem, 5vw, 2rem) auto;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
   border-radius: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(37, 99, 235, 0.1);
   animation: slideInUp 0.6s ease-out;
+  overflow-x: auto;
 }
 
 /* Title Styling */
 .hp1 {
-  font-size: 2.25rem;
+  font-size: clamp(1.5rem, 5vw, 2.25rem);
   font-weight: 700;
   text-align: center;
   background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.5rem, 5vw, 2rem);
 }
 
 /* Button Styling */
@@ -36,20 +36,23 @@ body {
   border-radius: 0.75rem;
   background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
   text-align: center;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: 600;
   width: 100%;
   max-width: 350px;
-  padding: 0.95rem 1.5rem;
+  padding: clamp(0.75rem, 2vw, 0.95rem) clamp(1rem, 3vw, 1.5rem);
+  min-height: 44px;
   height: auto;
   font-family: inherit;
   display: block;
-  margin: 1rem auto;
+  margin: clamp(0.75rem, 2vw, 1rem) auto;
   cursor: pointer;
   color: white;
   border: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .btn1:hover {
@@ -61,11 +64,17 @@ body {
 .btn1:active {
   transform: translateY(0);
 }
+grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  justify-content: center;
+  margin-bottom: clamp(1.5rem, 5vw, 2rem);
+}
 
-/* Button Group Layout */
-.btngp {
-  display: flex;
-  gap: 1.5rem;
+@media (max-width: 480px) {
+  .btngp {
+    grid-template-columns: 1fr;
+  }
   justify-content: center;
   margin-bottom: 2rem;
   flex-wrap: wrap;
@@ -75,20 +84,20 @@ body {
 .seats-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.5rem;
-  overflow-x: auto;
+  margin-top: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
 }
 
 .seats-table-wrapper {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .seats-table th,
 .seats-table td {
-  padding: 1rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
   text-align: center;
   border: 1px solid var(--border-color);
-  font-size: 0.95rem;
   font-weight: 500;
 }
 
@@ -98,6 +107,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-size: clamp(0.75rem, 2vw, 0.95rem);
 }
 
 .seats-table td {
@@ -113,7 +123,7 @@ body {
 /* Action Buttons Container */
 .action-buttons {
   display: flex;
-  gap: 0.5rem;
+  gap: clamp(0.3rem, 2vw, 0.5rem);
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -124,21 +134,24 @@ body {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white;
   border: none;
-  padding: 0.6rem 1rem;
+  padding: clamp(0.5rem, 1.5vw, 0.6rem) clamp(0.75rem, 2vw, 1rem);
   cursor: pointer;
   border-radius: 0.5rem;
   font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
+  min-height: 40px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .delete-btn:hover {
   background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
@@ -147,21 +160,24 @@ body {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
-  padding: 0.6rem 1rem;
+  padding: clamp(0.5rem, 1.5vw, 0.6rem) clamp(0.75rem, 2vw, 1rem);
   cursor: pointer;
   border-radius: 0.5rem;
   font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
+  min-height: 40px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .update-btn:hover {
   background: linear-gradient(135deg, #059669 0%, #047857 100%);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 

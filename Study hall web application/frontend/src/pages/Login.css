@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 2rem 1rem;
+  padding: clamp(1rem, 5vw, 2rem) clamp(0.5rem, 3vw, 1rem);
 }
 
 /* Modern Container */
@@ -17,7 +17,7 @@
   background: white;
   width: 100%;
   max-width: 450px;
-  padding: 2.5rem 2rem;
+  padding: clamp(1.5rem, 5vw, 2.5rem) clamp(1.25rem, 5vw, 2rem);
   border-radius: 1rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(37, 99, 235, 0.1);
@@ -32,10 +32,10 @@
 /* Title Styling */
 .login-title, 
 .signup-title {
-  font-size: 1.875rem;
+  font-size: clamp(1.5rem, 5vw, 1.875rem);
   color: var(--text-primary);
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
   font-weight: 700;
   background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
   -webkit-background-clip: text;
@@ -62,15 +62,16 @@ input[type="text"],
 input[type="password"],
 input[type="email"] {
   width: 100%;
-  padding: 0.85rem 1rem;
+  padding: clamp(0.75rem, 2vw, 0.85rem) clamp(0.75rem, 2vw, 1rem);
   margin-bottom: 0.5rem;
   border-radius: 0.75rem;
   border: 2px solid var(--border-color);
-  font-size: 1rem;
+  font-size: clamp(15px, 4vw, 16px);
   background-color: #f8fafc;
   transition: all 0.3s ease;
   font-family: inherit;
   color: var(--text-primary);
+  min-height: 44px;
 }
 
 input[type="text"]:focus, 
@@ -102,21 +103,25 @@ input[type="email"]::placeholder {
 
 /* Button */
 .btn {
-  width: 100%;
-  padding: 0.95rem 1.5rem;
-  font-size: 1rem;
+  width: 10clamp(0.75rem, 2vw, 0.95rem) clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: 600;
   color: white;
   background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
   border: none;
   border-radius: 0.75rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: 1rem;
   box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}ent: center;
   gap: 0.5rem;
 }
 

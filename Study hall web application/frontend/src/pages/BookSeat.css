@@ -5,9 +5,9 @@
   background: white;
   border-radius: 1rem;
   max-width: 700px;
-  width: 95%;
-  padding: 2.5rem;
-  margin: 2rem auto;
+  width: clamp(280px, 90vw, 700px);
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  margin: clamp(1rem, 5vw, 2rem) auto;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
@@ -67,14 +67,15 @@ form label {
 input[type="number"],
 input[type="time"] {
   width: 100%;
-  padding: 0.85rem 1rem;
-  font-size: 1rem;
+  padding: clamp(0.75rem, 2vw, 0.85rem) clamp(0.75rem, 2vw, 1rem);
+  font-size: clamp(15px, 4vw, 16px);
   border: 2px solid var(--border-color);
   border-radius: 0.75rem;
   transition: all 0.3s ease;
   background-color: #f8fafc;
   color: var(--text-primary);
   font-family: inherit;
+  min-height: 44px;
 }
 
 .BAS input[type="number"]:focus,
@@ -99,10 +100,11 @@ input[type="number"]:disabled {
   border-radius: 0.75rem;
   background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
   color: white;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: 600;
   width: 100%;
-  padding: 0.95rem 1.5rem;
+  padding: clamp(0.75rem, 2vw, 0.95rem) clamp(1rem, 3vw, 1.5rem);
+  min-height: 44px;
   height: auto;
   font-family: inherit;
   text-align: center;
@@ -111,9 +113,11 @@ input[type="number"]:disabled {
   justify-content: center;
   cursor: pointer;
   border: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
   margin-top: 0.5rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .btn1:hover {

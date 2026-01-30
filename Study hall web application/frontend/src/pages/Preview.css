@@ -9,7 +9,7 @@ body {
 /* Hero Background */
 .background {
   position: relative;
-  height: 600px;
+  height: clamp(300px, 50vh, 600px);
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,11 +36,11 @@ body {
 /* Hero Title Text */
 .h1style {
   color: #ffffff;
-  font-size: 3.5rem;
+  font-size: clamp(1.75rem, 8vw, 3.5rem);
   text-align: center;
   text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.6);
   z-index: 2;
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
   font-weight: 700;
   letter-spacing: -1px;
   animation: slideInDown 0.8s ease-out;
@@ -64,7 +64,7 @@ body {
   left: 0;
   width: 100%;
   background: linear-gradient(90deg, #2563eb 0%, #0891b2 100%);
-  padding: 1.25rem 0;
+  padding: clamp(0.75rem, 2vw, 1.25rem) 0;
   text-align: center;
   overflow: hidden;
   z-index: 3;
@@ -75,11 +75,11 @@ body {
 .notice {
   display: inline-block;
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
   font-weight: 600;
   animation: scrollingText 20s linear infinite;
   white-space: nowrap;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 3vw, 2rem);
   letter-spacing: 0.5px;
 }
 

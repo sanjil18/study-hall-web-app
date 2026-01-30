@@ -28,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -37,6 +38,19 @@ body {
   line-height: 1.6;
   font-size: 16px;
   overflow-x: hidden;
+  touch-action: manipulation;
+}
+
+/* Mobile Viewport Fix */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 /* Modern Scrollbar */
@@ -78,19 +92,92 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(1.875rem, 5vw, 3rem);
   margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: 2.25rem;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
   margin-bottom: 0.8rem;
 }
 
 h3 {
-  font-size: 1.875rem;
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
   margin-bottom: 0.6rem;
 }
+
+/* Mobile Typography */
+@media (max-width: 480px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.1rem; }
+}& Modern Button Styles */
+button, .btn1, .btnpr, input[type="button"], input[type="submit"] {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Touch-friendly button sizing */
+@media (max-width: 768px) {
+  button, .btn1, .btnpr, input[type="button"], input[type="submit"] {
+    min-height: 48px;
+    min-width: 44px;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+}
+
+/* Primary Buttons */
+.btn1, input[type="submit"] {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn1:hover, input[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.btn1:active, input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* Navigation Buttons */
+.btnpr {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #0284c7 100%);
+  color: white;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(8, 145, 178, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btnpr:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
+}
+
+.btnpr:active {
+  transform: translateY(0);
+}
+
+/* Button Reset 
 
 p {
   color: var(--text-secondary);
@@ -110,6 +197,106 @@ button {
 
 .flex-col {
   flex-direction: column;
+}
+
+/* Modern Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Responsive Breakpoints Utility */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 769px) {
+  body {
+    font-size: 16px;
+  }
 }
 
 .items-center {
