@@ -1,115 +1,273 @@
-/* Overall body styling */
+/* Modern Home Page Styling */
 body {
-  background-color: #f4f7fc; /* Light grayish blue background */
-  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  font-family: inherit;
   margin: 0;
   padding: 0;
 }
 
-/* Container for the group of elements */
+/* Main Container */
 .grp2 {
-  background-color: #fff;
-  width: 90%;
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: white;
+  width: 95%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  animation: slideInUp 0.6s ease-out;
 }
 
-/* Title styling */
+/* Title Styling */
 .hp1 {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 2.25rem;
+  font-weight: 700;
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+  background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
 }
 
-/* Button styling */
+/* Button Styling */
 .btn1 {
-  border-radius: 5px;
-  background-color: #00bcd4; /* Teal color */
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
   text-align: center;
-  font-size: 18px;
-  width: 350px;
-  height: 50px;
-  font-family: 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  max-width: 350px;
+  padding: 0.95rem 1.5rem;
+  height: auto;
+  font-family: inherit;
   display: block;
-  margin: 20px auto;
+  margin: 1rem auto;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
 }
 
 .btn1:hover {
-  background-color: #0097a7; /* Darker teal on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+  background: linear-gradient(135deg, #1e40af 0%, #0e7490 100%);
 }
 
-/* Button group layout */
+.btn1:active {
+  transform: translateY(0);
+}
+
+/* Button Group Layout */
 .btngp {
   display: flex;
-  gap: 20px;
+  gap: 1.5rem;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
-/* Table styling */
+/* Table Styling */
 .seats-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.seats-table-wrapper {
+  overflow-x: auto;
 }
 
 .seats-table th,
 .seats-table td {
-  padding: 15px;
+  padding: 1rem;
   text-align: center;
-  border: 1px solid #ddd;
-  font-size: 16px;
+  border: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .seats-table th {
-  background-color: #f4f4f4;
+  background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .seats-table td {
-  background-color: #fff;
+  background-color: #f8fafc;
+  color: var(--text-primary);
 }
 
-.seats-table tr:hover {
-  background-color: #f1f1f1;
+.seats-table tbody tr:hover {
+  background-color: rgba(37, 99, 235, 0.05);
+  transition: background-color 0.3s ease;
 }
 
-/* Styling for delete and update buttons */
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Delete Button */
 .delete-btn {
-  background-color: #ff4d4d;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 0.6rem 1rem;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .delete-btn:hover {
-  background-color: #e60000;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
+/* Update Button */
 .update-btn {
-  background-color: #4caf50; /* Green color for update button */
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 0.6rem 1rem;
   cursor: pointer;
-  border-radius: 5px;
-  margin-left: 10px;
-  transition: background-color 0.3s ease;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .update-btn:hover {
-  background-color: #388e3c; /* Darker green on hover */
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
-.p222
-{
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grp2 {
+    padding: 2rem;
+  }
+
+  .hp1 {
+    font-size: 1.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .grp2 {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .hp1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn1 {
+    max-width: 100%;
+  }
+
+  .btngp {
+    flex-direction: column;
+  }
+
+  .seats-table th,
+  .seats-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .delete-btn,
+  .update-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grp2 {
+    padding: 1rem;
+  }
+
+  .hp1 {
+    font-size: 1.25rem;
+  }
+
+  .seats-table {
+    font-size: 0.8rem;
+  }
+
+  .seats-table th,
+  .seats-table td {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .delete-btn,
+  .update-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* Animation */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.p222 {
   align-items: center;
 }

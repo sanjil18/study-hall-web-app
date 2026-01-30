@@ -32,20 +32,26 @@ const Home = () => {
 
   // Handle seat deletion
   const handleDelete = async (seatsNo) => {
-    try {
-      const response = await fetch(`http://localhost:8082/delete-seat/${seatsNo}`, {
-        method: 'DELETE',
-      });
+    if (window.confirm('Are you sure you want to delete this booking?')) {
+      try {
+        const response = await fetch(`http://localhost:8082/delete-seat/${seatsNo}`, {
+          method: 'DELETE',
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to delete seat');
+        if (!response.ok) {
+          throw new Error('Failed to delete seat');
+        }
+
+        setSeats(seats.filter(seat => seat.seatsNo !== seatsNo));
+        alert('✅ Seat successfully deleted.');
+      } catch (error) {
+        alert('❌ Error deleting seat. Please try again.');
       }
-
-      setSeats(seats.filter(seat => seat.seatsNo !== seatsNo));
-      alert('Seat successfully deleted.');
-    } catch (error) {
-      alert('Error deleting seat. Please try again.');
     }
+  };
+
+  const handleUpdate = (seat) => {
+    navigate('/home/book-seat', { state: seat });
   };
 
   return (
@@ -54,48 +60,76 @@ const Home = () => {
       <Navigation />
 
       <div className="grp2">
+        <h1 className="hp1">📚 My Study Hall Bookings</h1>
+
         <div className="btngp">
           <Link to="book-seat">
-            <button className="btn1" type="button">Book a Seat</button>
+            <button className="btn1" type="button">➕ Book a New Seat</button>
           </Link>
         </div>
 
-        <p className="hp1">Booked Seats</p>
-
         {loading ? (
-          <p>Loading booked seats...</p>
-        ) : (
-          <div className="booked-seats">
-            {seats.length > 0 ? (
+          <div className="loading">
+            <div className="spinner"></div>
+            <p>Loading your bookings...</p>
+          </div>
+        ) : seats.length > 0 ? (
+          <>
+            <div style={{ marginBottom: '1rem' }}>
+              <p style={{ color: '#64748b', fontSize: '0.95rem' }}>
+                You have <strong>{seats.length}</strong> active booking{seats.length !== 1 ? 's' : ''}
+              </p>
+            </div>
+            <div className="seats-table-wrapper">
               <table className="seats-table">
                 <thead>
                   <tr>
-                    <th>Seat Number</th>
-                    <th>Time Limit</th>
-                    <th>Actions</th>
+                    <th>🔢 Seat Number</th>
+                    <th>⏱️ Time Duration</th>
+                    <th>⚙️ Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {seats.map((seat) => (
                     <tr key={seat.seatsNo}>
-                      <td>{seat.seatsNo}</td>
+                      <td>
+                        <strong>Seat #{seat.seatsNo}</strong>
+                      </td>
                       <td>{seat.TimeLimit} hours</td>
                       <td>
-                        <button className="delete-btn" onClick={() => handleDelete(seat.seatsNo)}>Delete</button>
-                        <button 
-                          className="update-btn"
-                          onClick={() => navigate(`/book-seat?seatNo=${seat.seatsNo}&timeLimit=${seat.TimeLimit}`)}
-                        >
-                          Update Seat
-                        </button>
+                        <div className="action-buttons">
+                          <button 
+                            className="update-btn"
+                            onClick={() => handleUpdate(seat)}
+                            title="Update booking"
+                          >
+                            ✏️ Update
+                          </button>
+                          <button 
+                            className="delete-btn" 
+                            onClick={() => handleDelete(seat.seatsNo)}
+                            title="Delete booking"
+                          >
+                            🗑️ Delete
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            ) : (
-              <p className='p222'>No seats booked yet.</p>
-            )}
+            </div>
+          </>
+        ) : (
+          <div className="empty-state">
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📭</div>
+            <h3>No Bookings Yet</h3>
+            <p>You haven't booked any seats yet. Click the button above to book your first seat!</p>
+            <Link to="book-seat">
+              <button className="btn1" style={{ marginTop: '1rem', maxWidth: '200px' }}>
+                Book Now
+              </button>
+            </Link>
           </div>
         )}
       </div>

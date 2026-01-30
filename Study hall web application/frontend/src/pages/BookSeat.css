@@ -1,112 +1,207 @@
-/* Base container styling */
+/* Modern BookSeat Page Styling */
+
+/* Base Container */
 .BAS {
-    background-color: #fff;
-    border-radius: 12px;
-    max-width: 700px;
-    width: 100%;
-    padding: 30px;
-    margin: 40px auto;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all 0.3s ease-in-out;
+  background: white;
+  border-radius: 1rem;
+  max-width: 700px;
+  width: 95%;
+  padding: 2.5rem;
+  margin: 2rem auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  animation: slideInUp 0.6s ease-out;
+}
+
+.BAS:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Heading Styles */
+h3 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Form Container */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+/* Input Fields */
+.BAS input[type="number"],
+.BAS input[type="time"],
+input[type="number"],
+input[type="time"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+.BAS input[type="number"]:focus,
+.BAS input[type="time"]:focus,
+input[type="number"]:focus,
+input[type="time"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.BAS input[type="number"]:disabled,
+input[type="number"]:disabled {
+  background-color: #e2e8f0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Button Styling */
+.btn1 {
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  height: auto;
+  font-family: inherit;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  margin-top: 0.5rem;
+}
+
+.btn1:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+  background: linear-gradient(135deg, #1e40af 0%, #0e7490 100%);
+}
+
+.btn1:active {
+  transform: translateY(0);
+}
+
+/* Button Group */
+.btngp {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Link Button Styling */
+.btngp a,
+.btngp button {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .BAS {
+    width: 90%;
+    padding: 1.5rem;
   }
-  
-  /* Hover effect for container */
-  .BAS:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Styling for form input fields */
-  .BAS input[type="number"],
-  .BAS input[type="time"] {
-    width: 100%;
-    max-width: 320px;
-    padding: 14px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    margin: 10px 0;
-    transition: border-color 0.3s ease;
-    height: 50px;
-  }
-  
-  /* Focus effect for input fields */
-  .BAS input[type="number"]:focus,
-  .BAS input[type="time"]:focus {
-    border-color: #00bcd4;
-    outline: none;
-  }
-  
-  /* Button styling */
-  .btn1 {
-    border-radius: 8px;
-    background-color: #00bcd4;
-    color: white;
-    font-size: 18px;
-    width: 160px;
-    height: 50px;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: none;
-  }
-  
-  .btn1:hover {
-    background-color: #0097a7;
-  }
-  
-  /* Button group container with responsive flex */
-  .btngp {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  /* Heading styles */
+
   h3 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
   }
-  
-  /* Container for form */
-  .login-container {
-    display: flex;
+
+  form {
+    gap: 1.2rem;
+  }
+
+  .btn1 {
+    font-size: 0.95rem;
+  }
+
+  .btngp {
     flex-direction: column;
-    align-items: center;
-    padding: 30px 20px;
+    gap: 1rem;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .BAS {
-      width: 90%;
-      padding: 20px;
-    }
-  
-    .btn1 {
-      width: 100%;
-      font-size: 16px;
-    }
-  
-    .btngp {
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-    h3 {
-      font-size: 22px;
-    }
+
+  .btngp a,
+  .btngp button {
+    width: 100%;
+    min-width: auto;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .BAS {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .btn1 {
+    padding: 0.75rem 1rem;
+  }
+
+  form {
+    gap: 1rem;
+  }
+}
+
+/* Animation */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,29 +1,40 @@
 import React, { useState } from 'react';
 import Header1 from '../Components/Header1';
-import Footer from '../Components/Footer'; // Correct path for Footer component
-import './Login.css'; // Correct path for Login.css
+import Footer from '../Components/Footer';
+import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  // State to store the form values
   const [regNo, setRegNo] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   
-  // useNavigate for redirection after successful signup
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage('');
 
-    // Check if passwords match
-    if (password1 !== password2) {
-      alert('Both passwords do not match. Please try again.');
+    if (!regNo || !password1 || !password2) {
+      setErrorMessage('❌ Please fill in all fields.');
       return;
     }
 
+    if (password1 !== password2) {
+      setErrorMessage('❌ Passwords do not match. Please try again.');
+      return;
+    }
+
+    if (password1.length < 6) {
+      setErrorMessage('❌ Password must be at least 6 characters long.');
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      // Sending the signup request to the backend API
       const response = await fetch('http://localhost:8082/students/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -32,78 +43,132 @@ const SignUp = () => {
 
       const data = await response.json();
 
-      // Handle the response from the backend
       if (response.ok) {
-        alert('Account created successfully!');
-        navigate('/login'); // Redirect to login page after successful signup
+        alert('✅ Account created successfully! Please login now.');
+        navigate('/login');
       } else {
-        alert(data.error || 'Registration failed. Please try again.');
+        setErrorMessage('❌ ' + (data.error || 'Registration failed. Please try again.'));
       }
     } catch (error) {
-      alert('An error occurred. Please try again.');
+      console.error('Signup error:', error);
+      setErrorMessage('❌ An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="signup-page">
-      
-
       <div className="signup-container">
-        <h3 className="signup-title">Sign Up Page</h3>
+        <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🎓</div>
+          <h3 className="signup-title">Create Account</h3>
+          <p style={{ color: '#64748b', fontSize: '0.95rem' }}>Join our study hall community</p>
+        </div>
 
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Your Reg No:</label>
+          <div className="form-group">
+            <label htmlFor="regNo">
+              <span style={{ marginRight: '0.5rem' }}>🆔</span>
+              Registration Number:
+            </label>
             <input
               type="text"
-              name="Userid"
-              placeholder="Enter the Reg No"
+              id="regNo"
+              name="regNo"
+              placeholder="e.g., REG123456"
               value={regNo}
               onChange={(e) => setRegNo(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
-          <br />
 
-          <div>
-            <label>Input Password:</label>
+          <div className="form-group">
+            <label htmlFor="password1">
+              <span style={{ marginRight: '0.5rem' }}>🔑</span>
+              Create Password:
+            </label>
             <input
               type="password"
               id="password1"
-              name="Password1"
-              placeholder="Enter the password"
+              name="password1"
+              placeholder="Minimum 6 characters"
               value={password1}
               onChange={(e) => setPassword1(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
-          <br />
 
-          <div>
-            <label>Confirm Password:</label>
+          <div className="form-group">
+            <label htmlFor="password2">
+              <span style={{ marginRight: '0.5rem' }}>✔️</span>
+              Confirm Password:
+            </label>
             <input
               type="password"
               id="password2"
-              name="Password2"
-              placeholder="Enter the password again"
+              name="password2"
+              placeholder="Re-enter password"
               value={password2}
               onChange={(e) => setPassword2(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
-          <br />
 
-          <button className="btn" type="submit">
-            Sign Up
+          <button 
+            className="btn" 
+            type="submit"
+            disabled={loading}
+            style={{ opacity: loading ? 0.7 : 1 }}
+          >
+            {loading ? '⏳ Creating Account...' : '✨ Create Account'}
           </button>
         </form>
+
+        {errorMessage && (
+          <div className="error-message">
+            {errorMessage}
+          </div>
+        )}
+
+        <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border-color)', textAlign: 'center' }}>
+          <p style={{ color: '#64748b', fontSize: '0.95rem', margin: '0 0 0.5rem 0' }}>
+            Already have an account?
+          </p>
+          <Link to="/login" style={{ textDecoration: 'none' }}>
+            <button 
+              type="button"
+              style={{
+                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                color: 'white',
+                border: 'none',
+                padding: '0.8rem 1.5rem',
+                borderRadius: '0.75rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                width: '100%',
+                transition: 'all 0.3s ease',
+                fontSize: '1rem'
+              }}
+              onMouseOver={(e) => {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 8px 20px rgba(16, 185, 129, 0.3)';
+              }}
+              onMouseOut={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'none';
+              }}
+            >
+              🔓 Go to Login
+            </button>
+          </Link>
+        </div>
       </div>
 
-      <br />
-      <br />
-      <br />
-
-     
+      <Footer />
     </div>
   );
 };
