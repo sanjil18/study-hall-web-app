@@ -64,12 +64,20 @@ const SeatBooking = () => {
         }),
       });
 
-      const data = await response.json();
+      // Always try to parse JSON response
+      let data;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        // If JSON parsing fails, create generic error object
+        data = { error: 'Server error. Please try again.' };
+      }
 
       if (response.ok) {
         alert(existingSeat ? '✅ Seat updated successfully!' : '✅ Seat booked successfully!');
         navigate('/home');
       } else {
+        // Show specific error message from backend
         alert('❌ ' + (data.error || 'Failed to process request.'));
       }
     } catch (error) {

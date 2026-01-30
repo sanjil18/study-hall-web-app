@@ -35,17 +35,31 @@ const Home = () => {
   const handleDelete = async (seatsNo) => {
     if (window.confirm('Are you sure you want to delete this booking?')) {
       try {
-        const response = await fetch(`${API_BASE_URL}/delete-seat/${seatsNo}`, {
+        // Get regNo from localStorage for ownership verification
+        const regNo = localStorage.getItem('regNo');
+
+        const response = await fetch(`${API_BASE_URL}/bookings/delete/${seatsNo}?regNo=${regNo}`, {
           method: 'DELETE',
         });
 
+        // Parse JSON response
+        let data;
+        try {
+          data = await response.json();
+        } catch (parseError) {
+          data = { error: 'Server error' };
+        }
+
         if (!response.ok) {
-          throw new Error('Failed to delete seat');
+          // Show specific error message from backend
+          alert('❌ ' + (data.error || 'Failed to delete seat'));
+          return;
         }
 
         setSeats(seats.filter(seat => seat.seatsNo !== seatsNo));
         alert('✅ Seat successfully deleted.');
       } catch (error) {
+        console.error('Delete error:', error);
         alert('❌ Error deleting seat. Please try again.');
       }
     }
