@@ -9,12 +9,13 @@ import API_BASE_URL from '../api/config';
 const SeatBooking = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   // If updating, pre-fill with existing details
   const existingSeat = location.state || null;
-  
+
   const [seatNo, setSeatNo] = useState(existingSeat ? existingSeat.seatsNo : '');
-  const [time, setTime] = useState(existingSeat ? existingSeat.TimeLimit : '');
+  const [startTime, setStartTime] = useState(existingSeat ? existingSeat.startTime : '');
+  const [endTime, setEndTime] = useState(existingSeat ? existingSeat.endTime : '');
   const [loading, setLoading] = useState(false);
 
   const handleSeatChange = (e) => {
@@ -24,22 +25,25 @@ const SeatBooking = () => {
     }
   };
 
-  const handleTimeChange = (e) => {
-    setTime(e.target.value);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    if (!seatNo || !time) {
+    if (!seatNo || !startTime || !endTime) {
       alert('❌ Please fill in all required fields.');
       setLoading(false);
       return;
     }
 
-    const url = existingSeat 
-      ? `${API_BASE_URL}/bookings/update-seat/${seatNo}` 
+    // Validate end time is after start time
+    if (new Date(endTime) <= new Date(startTime)) {
+      alert('❌ End time must be after start time.');
+      setLoading(false);
+      return;
+    }
+
+    const url = existingSeat
+      ? `${API_BASE_URL}/bookings/update-seat/${seatNo}`
       : `${API_BASE_URL}/bookings/bookSeat`;
 
     const method = existingSeat ? 'PUT' : 'POST';
@@ -51,7 +55,13 @@ const SeatBooking = () => {
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ regNo, seatNo: parseInt(seatNo), timeLimit: time }),
+        body: JSON.stringify({
+          regNo,
+          seatNo: parseInt(seatNo),
+          startTime,
+          endTime,
+          timeLimit: `${startTime} to ${endTime}` // Keep for backward compatibility
+        }),
       });
 
       const data = await response.json();
@@ -74,53 +84,61 @@ const SeatBooking = () => {
     <div>
       <Header1 />
       <Navigation />
-      
+
       <div className="BAS">
         <h3>{existingSeat ? '✏️ Update Your Seat Booking' : '📅 Book a Study Hall Seat'}</h3>
-        
+
         <form onSubmit={handleSubmit} className="login-container">
           <div className="form-group">
             <label htmlFor="seatNo">🔢 Seat Number (1-150):</label>
-            <input 
-              type="number" 
+            <input
+              type="number"
               id="seatNo"
               min="1"
               max="150"
-              value={seatNo} 
-              onChange={handleSeatChange} 
+              value={seatNo}
+              onChange={handleSeatChange}
               placeholder="Enter seat number"
-              required 
-              disabled={!!existingSeat} 
+              required
+              disabled={!!existingSeat}
             />
             {existingSeat && <p style={{ fontSize: '0.8rem', color: '#64748b', margin: '0.25rem 0' }}>Seat number cannot be changed for existing bookings</p>}
           </div>
 
           <div className="form-group">
-            <label htmlFor="time">⏱️ Duration (hours):</label>
-            <input 
-              type="number" 
-              id="time"
-              min="1"
-              max="24"
-              value={time} 
-              onChange={(e) => setTime(e.target.value)}
-              placeholder="Enter hours (1-24)"
-              required 
+            <label htmlFor="startTime">🕐 Start Time:</label>
+            <input
+              type="datetime-local"
+              id="startTime"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="endTime">🕓 End Time:</label>
+            <input
+              type="datetime-local"
+              id="endTime"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+              required
             />
           </div>
 
           <div className="btngp">
-            <button 
-              className="btn1" 
+            <button
+              className="btn1"
               type="submit"
               disabled={loading}
               style={{ opacity: loading ? 0.7 : 1 }}
             >
               {loading ? '⏳ Processing...' : (existingSeat ? '💾 Update Booking' : '📌 Book Seat')}
             </button>
-            <button 
-              className="btn1" 
-              type="button" 
+            <button
+              className="btn1"
+              type="button"
               onClick={() => navigate('/home')}
               style={{ background: 'linear-gradient(135deg, #64748b 0%, #475569 100%)' }}
             >
@@ -133,7 +151,7 @@ const SeatBooking = () => {
           <p><strong>💡 Tips:</strong></p>
           <ul style={{ margin: '0.5rem 0', paddingLeft: '1.5rem' }}>
             <li>Available seats: 1-150</li>
-            <li>Maximum booking duration: 24 hours</li>
+            <li>Select your booking start and end times</li>
             <li>You can update your booking anytime from the home page</li>
           </ul>
         </div>

@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBookedSeats = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/booked-seats`);
+        const response = await fetch(`${API_BASE_URL}/bookings/booked-seats`);
         if (!response.ok) {
           throw new Error('Failed to fetch booked seats');
         }
@@ -99,15 +99,15 @@ const Home = () => {
                       <td>{seat.TimeLimit} hours</td>
                       <td>
                         <div className="action-buttons">
-                          <button 
+                          <button
                             className="update-btn"
                             onClick={() => handleUpdate(seat)}
                             title="Update booking"
                           >
                             ✏️ Update
                           </button>
-                          <button 
-                            className="delete-btn" 
+                          <button
+                            className="delete-btn"
                             onClick={() => handleDelete(seat.seatsNo)}
                             title="Delete booking"
                           >

@@ -20,7 +20,7 @@ const Profile = () => {
 
   const fetchBookingCount = async (regNo) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/booked-seats`);
+      const response = await fetch(`${API_BASE_URL}/bookings/booked-seats`);
       if (response.ok) {
         const data = await response.json();
         const userBookings = data.filter(booking => booking.regNo === regNo);
@@ -48,7 +48,7 @@ const Profile = () => {
 
       <div className='divgrp1'>
         <h2>📊 Your Study Hall Activity</h2>
-        
+
         <div className='profile-stats'>
           <div className='stat-card'>
             <div className='stat-value'>{bookingCount}</div>

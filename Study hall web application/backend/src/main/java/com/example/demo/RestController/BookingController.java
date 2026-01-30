@@ -23,7 +23,6 @@ public class BookingController {
 
     /* Commented-out section preserved, though typically removed */
 
-
     @GetMapping("/getBooking/{id}")
     public Bookings getBookingById(@PathVariable int id) {
         // Using standardized service method name
@@ -33,6 +32,14 @@ public class BookingController {
     @GetMapping("/getAllBooking")
     public List<Bookings> getAllBooking() {
         return bookingService.getAllBookings();
+    }
+
+    @GetMapping("/booked-seats")
+    public List<Integer> getBookedSeats() {
+        return bookingService.getAllBookings()
+                .stream()
+                .map(Bookings::getSeatNo)
+                .collect(java.util.stream.Collectors.toList());
     }
 
     @DeleteMapping("/delete/{id}")

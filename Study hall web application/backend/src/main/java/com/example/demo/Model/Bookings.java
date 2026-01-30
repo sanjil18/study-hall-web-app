@@ -1,6 +1,7 @@
 package com.example.demo.Model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "bookings")
@@ -15,6 +16,12 @@ public class Bookings {
 
     @Column(name = "Reg_No")
     private String regNo;
+
+    @Column(name = "start_time")
+    private LocalDateTime startTime;
+
+    @Column(name = "end_time")
+    private LocalDateTime endTime;
 
     // Getters and setters (Crucial for Jackson JSON mapping)
     public int getSeatNo() {
@@ -39,5 +46,21 @@ public class Bookings {
 
     public void setRegNo(String regNo) {
         this.regNo = regNo;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 }
