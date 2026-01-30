@@ -3,6 +3,7 @@ import Header1 from '../Components/Header1';
 import Footer from '../Components/Footer';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../api/config';
 
 const Login = () => {
   const [regNo, setRegNo] = useState('');
@@ -17,7 +18,7 @@ const Login = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('http://localhost:8082/students/login', {
+      const response = await fetch(`${API_BASE_URL}/students/login`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

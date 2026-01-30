@@ -4,6 +4,7 @@ import Footer from '../Components/Footer';
 import Navigation from '../Components/Navigation';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
+import API_BASE_URL from '../api/config';
 
 const Home = () => {
   const [seats, setSeats] = useState([]);
@@ -14,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBookedSeats = async () => {
       try {
-        const response = await fetch('http://localhost:8082/booked-seats');
+        const response = await fetch(`${API_BASE_URL}/booked-seats`);
         if (!response.ok) {
           throw new Error('Failed to fetch booked seats');
         }
@@ -34,7 +35,7 @@ const Home = () => {
   const handleDelete = async (seatsNo) => {
     if (window.confirm('Are you sure you want to delete this booking?')) {
       try {
-        const response = await fetch(`http://localhost:8082/delete-seat/${seatsNo}`, {
+        const response = await fetch(`${API_BASE_URL}/delete-seat/${seatsNo}`, {
           method: 'DELETE',
         });
 

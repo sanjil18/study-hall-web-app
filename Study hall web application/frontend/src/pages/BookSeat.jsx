@@ -4,6 +4,7 @@ import Footer from '../Components/Footer';
 import Navigation from '../Components/Navigation';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './BookSeat.css';
+import API_BASE_URL from '../api/config';
 
 const SeatBooking = () => {
   const location = useLocation();
@@ -38,8 +39,8 @@ const SeatBooking = () => {
     }
 
     const url = existingSeat 
-      ? `http://localhost:8082/bookings/update-seat/${seatNo}` 
-      : 'http://localhost:8082/bookings/bookSeat';
+      ? `${API_BASE_URL}/bookings/update-seat/${seatNo}` 
+      : `${API_BASE_URL}/bookings/bookSeat`;
 
     const method = existingSeat ? 'PUT' : 'POST';
 

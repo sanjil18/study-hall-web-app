@@ -3,6 +3,7 @@ import Header1 from '../Components/Header1';
 import Footer from '../Components/Footer';
 import Navigation from '../Components/Navigation';
 import './Profile.css';
+import API_BASE_URL from '../api/config';
 
 const Profile = () => {
   const [regNo, setRegNo] = useState('');
@@ -19,7 +20,7 @@ const Profile = () => {
 
   const fetchBookingCount = async (regNo) => {
     try {
-      const response = await fetch('http://localhost:8082/booked-seats');
+      const response = await fetch(`${API_BASE_URL}/booked-seats`);
       if (response.ok) {
         const data = await response.json();
         const userBookings = data.filter(booking => booking.regNo === regNo);
