@@ -2,24 +2,21 @@ version: '3.9'
 
 services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    # Use your Docker Hub image instead of building locally
+    image: sanjil245320/study-hall-frontend:latest
     ports:
       - "5173:80"
     environment:
-      - VITE_API_BASE_URL=http://localhost:8082  # Changed to 8082
+      - VITE_API_BASE_URL=http://localhost:8082
     depends_on:
       - backend
     restart: unless-stopped
 
   backend:
-    build:
-      
-      context: ./backend
-      dockerfile: Dockerfile
+    # Use your Docker Hub image instead of building locally
+    image: sanjil245320/study-hall-backend:latest
     ports:
-      - "8082:8080"  
+      - "8082:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/studyhall?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&autoReconnect=true
       - SPRING_DATASOURCE_USERNAME=root
@@ -35,7 +32,7 @@ services:
       MYSQL_ROOT_PASSWORD: Sanjil@2021
       MYSQL_DATABASE: studyhall
     ports:
-      - "3310:3306"  
+      - "3310:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     restart: unless-stopped
