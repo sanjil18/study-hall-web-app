@@ -20,6 +20,14 @@ const Home = () => {
           throw new Error('Failed to fetch booked seats');
         }
         const data = await response.json();
+        console.log("--------------- DEBUG START ---------------");
+        console.log("Raw API Response:", data);
+        if (data.length > 0) {
+          console.log("First Booking Item Keys:", Object.keys(data[0]));
+          console.log("First Booking seatNo:", data[0].seatNo);
+          console.log("First Booking startTime:", data[0].startTime);
+        }
+        console.log("--------------- DEBUG END ---------------");
         setSeats(data);
       } catch (error) {
         console.error('Error fetching booked seats:', error);
