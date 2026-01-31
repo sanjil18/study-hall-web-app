@@ -29,6 +29,7 @@ public class Bookings {
     private LocalDateTime endTime;
 
     // Getters and setters (Crucial for Jackson JSON mapping)
+    @JsonProperty("seatNo")
     public int getSeatNo() {
         return seatNo;
     }
@@ -53,6 +54,7 @@ public class Bookings {
         this.regNo = regNo;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     public LocalDateTime getStartTime() {
         return startTime;
     }
@@ -61,6 +63,7 @@ public class Bookings {
         this.startTime = startTime;
     }
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     public LocalDateTime getEndTime() {
         return endTime;
     }
