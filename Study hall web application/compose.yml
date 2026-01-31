@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Frontend Service with built-in Nginx
   frontend:
-    image: sanjil245320/study-hall-frontend:latest
+    image: sanjil245320/study-hall-frontend:${TAG:-latest}
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -24,7 +24,7 @@ services:
 
   backend:
     # Use your Docker Hub image instead of building locally
-    image: sanjil245320/study-hall-backend:latest
+    image: sanjil245320/study-hall-backend:${TAG:-latest}
     # No ports exposed externally - only accessible via Nginx
     expose:
       - "8080"
