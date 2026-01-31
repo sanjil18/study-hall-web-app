@@ -1,5 +1,7 @@
 package com.example.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -9,6 +11,7 @@ public class Bookings {
 
     @Id
     @Column(name = "SeatNo")
+    @JsonProperty("seatNo")
     private int seatNo;
 
     @Column(name = "TimeLimit")
@@ -18,9 +21,11 @@ public class Bookings {
     private String regNo;
 
     @Column(name = "start_time")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startTime;
 
     @Column(name = "end_time")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime endTime;
 
     // Getters and setters (Crucial for Jackson JSON mapping)
