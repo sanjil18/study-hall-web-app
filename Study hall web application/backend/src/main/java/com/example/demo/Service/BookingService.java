@@ -45,8 +45,10 @@ public class BookingService {
         LocalDateTime now = LocalDateTime.now();
 
         // 1. Check if the seat is already booked AND active
+        // 1. Check if the seat is already booked AND active
         Bookings existingSeatBooking = bookingRepository.findBySeatNo(newBooking.getSeatNo());
-        if (existingSeatBooking != null && existingSeatBooking.getEndTime().isAfter(now)) {
+        if (existingSeatBooking != null && existingSeatBooking.getEndTime() != null
+                && existingSeatBooking.getEndTime().isAfter(now)) {
             return null; // Seat is already booked and active
         }
 

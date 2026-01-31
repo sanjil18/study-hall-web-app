@@ -56,7 +56,7 @@ const Home = () => {
           return;
         }
 
-        setSeats(seats.filter(seat => seat.seatsNo !== seatsNo));
+        setSeats(seats.filter(seat => seat.seatNo !== seatsNo));
         alert('✅ Seat successfully deleted.');
       } catch (error) {
         console.error('Delete error:', error);
@@ -106,11 +106,14 @@ const Home = () => {
                 </thead>
                 <tbody>
                   {seats.map((seat) => (
-                    <tr key={seat.seatsNo}>
+                    <tr key={seat.seatNo}>
                       <td>
-                        <strong>Seat #{seat.seatsNo}</strong>
+                        <strong>Seat #{seat.seatNo}</strong>
                       </td>
-                      <td>{seat.TimeLimit} hours</td>
+                      <td>
+                        {new Date(seat.startTime).toLocaleString()} - <br />
+                        {new Date(seat.endTime).toLocaleTimeString()}
+                      </td>
                       <td>
                         <div className="action-buttons">
                           <button
@@ -122,7 +125,7 @@ const Home = () => {
                           </button>
                           <button
                             className="delete-btn"
-                            onClick={() => handleDelete(seat.seatsNo)}
+                            onClick={() => handleDelete(seat.seatNo)}
                             title="Delete booking"
                           >
                             🗑️ Delete

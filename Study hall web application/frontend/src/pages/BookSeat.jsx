@@ -13,7 +13,7 @@ const SeatBooking = () => {
   // If updating, pre-fill with existing details
   const existingSeat = location.state || null;
 
-  const [seatNo, setSeatNo] = useState(existingSeat ? existingSeat.seatsNo : '');
+  const [seatNo, setSeatNo] = useState(existingSeat ? existingSeat.seatNo : '');
   const [startTime, setStartTime] = useState(existingSeat ? existingSeat.startTime : '');
   const [endTime, setEndTime] = useState(existingSeat ? existingSeat.endTime : '');
   const [loading, setLoading] = useState(false);
