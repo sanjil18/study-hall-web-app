@@ -58,8 +58,8 @@ const SeatBooking = () => {
         body: JSON.stringify({
           regNo,
           seatNo: parseInt(seatNo),
-          startTime,
-          endTime,
+          startTime: startTime.length === 16 ? startTime + ":00" : startTime,
+          endTime: endTime.length === 16 ? endTime + ":00" : endTime,
           timeLimit: `${startTime} to ${endTime}` // Keep for backward compatibility
         }),
       });
