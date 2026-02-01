@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import Header1 from '../Components/Header1';
 import Footer from '../Components/Footer';
-import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import API_BASE_URL from '../api/config';
+import { UserPlus, User, Lock, ArrowLeft, AlertCircle } from 'lucide-react';
 
 const SignUp = () => {
   const [regNo, setRegNo] = useState('');
@@ -11,25 +10,25 @@ const SignUp = () => {
   const [password2, setPassword2] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
 
     if (!regNo || !password1 || !password2) {
-      setErrorMessage('❌ Please fill in all fields.');
+      setErrorMessage('Please fill in all fields.');
       return;
     }
 
     if (password1 !== password2) {
-      setErrorMessage('❌ Passwords do not match. Please try again.');
+      setErrorMessage('Passwords do not match. Please try again.');
       return;
     }
 
     if (password1.length < 6) {
-      setErrorMessage('❌ Password must be at least 6 characters long.');
+      setErrorMessage('Password must be at least 6 characters long.');
       return;
     }
 
@@ -48,128 +47,152 @@ const SignUp = () => {
         alert('✅ Account created successfully! Please login now.');
         navigate('/login');
       } else {
-        setErrorMessage('❌ ' + (data.error || 'Registration failed. Please try again.'));
+        setErrorMessage(data.error || 'Registration failed. Please try again.');
       }
     } catch (error) {
       console.error('Signup error:', error);
-      setErrorMessage('❌ An error occurred. Please try again.');
+      setErrorMessage('An error occurred. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="signup-page">
-      <div className="signup-container">
-        <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🎓</div>
-          <h3 className="signup-title">Create Account</h3>
-          <p style={{ color: '#64748b', fontSize: '0.95rem' }}>Join our study hall community</p>
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="mx-auto h-12 w-12 bg-green-100 rounded-full flex items-center justify-center">
+          <UserPlus className="h-6 w-6 text-green-600" />
         </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="regNo">
-              <span style={{ marginRight: '0.5rem' }}>🆔</span>
-              Registration Number:
-            </label>
-            <input
-              type="text"
-              id="regNo"
-              name="regNo"
-              placeholder="e.g., REG123456"
-              value={regNo}
-              onChange={(e) => setRegNo(e.target.value)}
-              required
-              disabled={loading}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password1">
-              <span style={{ marginRight: '0.5rem' }}>🔑</span>
-              Create Password:
-            </label>
-            <input
-              type="password"
-              id="password1"
-              name="password1"
-              placeholder="Minimum 6 characters"
-              value={password1}
-              onChange={(e) => setPassword1(e.target.value)}
-              required
-              disabled={loading}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password2">
-              <span style={{ marginRight: '0.5rem' }}>✔️</span>
-              Confirm Password:
-            </label>
-            <input
-              type="password"
-              id="password2"
-              name="password2"
-              placeholder="Re-enter password"
-              value={password2}
-              onChange={(e) => setPassword2(e.target.value)}
-              required
-              disabled={loading}
-            />
-          </div>
-
-          <button 
-            className="btn" 
-            type="submit"
-            disabled={loading}
-            style={{ opacity: loading ? 0.7 : 1 }}
-          >
-            {loading ? '⏳ Creating Account...' : '✨ Create Account'}
-          </button>
-        </form>
-
-        {errorMessage && (
-          <div className="error-message">
-            {errorMessage}
-          </div>
-        )}
-
-        <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border-color)', textAlign: 'center' }}>
-          <p style={{ color: '#64748b', fontSize: '0.95rem', margin: '0 0 0.5rem 0' }}>
-            Already have an account?
-          </p>
-          <Link to="/login" style={{ textDecoration: 'none' }}>
-            <button 
-              type="button"
-              style={{
-                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                color: 'white',
-                border: 'none',
-                padding: '0.8rem 1.5rem',
-                borderRadius: '0.75rem',
-                fontWeight: '600',
-                cursor: 'pointer',
-                width: '100%',
-                transition: 'all 0.3s ease',
-                fontSize: '1rem'
-              }}
-              onMouseOver={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 8px 20px rgba(16, 185, 129, 0.3)';
-              }}
-              onMouseOut={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = 'none';
-              }}
-            >
-              🔓 Go to Login
-            </button>
-          </Link>
-        </div>
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Create Account
+        </h2>
+        <p className="mt-2 text-center text-sm text-gray-600">
+          Join our study hall community
+        </p>
       </div>
 
-      <Footer />
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-gray-100">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="regNo" className="block text-sm font-medium text-gray-700">
+                Registration Number
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+                <input
+                  id="regNo"
+                  name="regNo"
+                  type="text"
+                  required
+                  className="focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg p-2.5 bg-gray-50 border"
+                  placeholder="e.g., REG123456"
+                  value={regNo}
+                  onChange={(e) => setRegNo(e.target.value)}
+                  disabled={loading}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="password1" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+                <input
+                  id="password1"
+                  name="password1"
+                  type="password"
+                  required
+                  className="focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg p-2.5 bg-gray-50 border"
+                  placeholder="Minimum 6 characters"
+                  value={password1}
+                  onChange={(e) => setPassword1(e.target.value)}
+                  disabled={loading}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="password2" className="block text-sm font-medium text-gray-700">
+                Confirm Password
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                </div>
+                <input
+                  id="password2"
+                  name="password2"
+                  type="password"
+                  required
+                  className="focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-lg p-2.5 bg-gray-50 border"
+                  placeholder="Re-enter password"
+                  value={password2}
+                  onChange={(e) => setPassword2(e.target.value)}
+                  disabled={loading}
+                />
+              </div>
+            </div>
+
+            {errorMessage && (
+              <div className="rounded-md bg-red-50 p-4">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <AlertCircle className="h-5 w-5 text-red-400" aria-hidden="true" />
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-sm font-medium text-red-800">{errorMessage}</h3>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+              >
+                {loading ? 'Creating Account...' : 'Sign Up'}
+              </button>
+            </div>
+          </form>
+
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">
+                  Already have an account?
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Link
+                to="/login"
+                className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
+              >
+                <div className="flex items-center gap-2">
+                  <ArrowLeft size={18} />
+                  Back to Login
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mt-auto">
+        <Footer />
+      </div>
     </div>
   );
 };

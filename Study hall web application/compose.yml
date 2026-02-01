@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   # Frontend Service with built-in Nginx
@@ -23,11 +23,14 @@ services:
       retries: 3
 
   backend:
-    # Use your Docker Hub image instead of building locally
-    image: sanjil245320/study-hall-backend:${TAG:-latest}
+    # Build locally to ensure latest code is used
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    # image: sanjil245320/study-hall-backend:${TAG:-latest}
     # No ports exposed externally - only accessible via Nginx
-    expose:
-      - "8080"
+    ports:
+      - "8082:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/studyhall?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&autoReconnect=true
       - SPRING_DATASOURCE_USERNAME=root
