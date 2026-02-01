@@ -4,9 +4,9 @@ services:
   # Frontend Service with built-in Nginx
   frontend:
     image: sanjil245320/study-hall-frontend:${TAG:-latest}
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    # build:
+    #   context: ./frontend
+    #   dockerfile: Dockerfile
     ports:
       - "5173:80"
     volumes:
@@ -24,10 +24,10 @@ services:
 
   backend:
     # Build locally to ensure latest code is used
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    # image: sanjil245320/study-hall-backend:${TAG:-latest}
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    image: sanjil245320/study-hall-backend:${TAG:-latest}
     # No ports exposed externally - only accessible via Nginx
     ports:
       - "8082:8080"
