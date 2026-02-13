@@ -6,8 +6,12 @@
     docker_users: ["ubuntu"]
 
   tasks:
-    - name: Fix broken apt sources (remove corrupted docker.list)
-      shell: rm -f /etc/apt/sources.list.d/docker.list
+    - name: Fix broken apt sources (remove all conflicting docker lists)
+      shell: |
+        rm -f /etc/apt/sources.list.d/docker.list
+        rm -f /etc/apt/sources.list.d/archive_uri_https_download_docker_com_linux_ubuntu_noble.list
+        rm -f /etc/apt/sources.list.d/archive_uri_https_download_docker_com_linux_ubuntu_jammy.list
+        find /etc/apt/sources.list.d/ -name "*.list" -type f -exec grep -l "download.docker.com" {} + | xargs -r rm -f
 
     - name: Update apt cache
       apt:
