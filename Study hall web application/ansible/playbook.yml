@@ -6,6 +6,9 @@
     docker_users: ["ubuntu"]
 
   tasks:
+    - name: Fix broken apt sources (remove corrupted docker.list)
+      shell: rm -f /etc/apt/sources.list.d/docker.list
+
     - name: Update apt cache
       apt:
         update_cache: yes
