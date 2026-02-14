@@ -6,6 +6,37 @@
     docker_users: ["ubuntu"]
 
   tasks:
+    # --- SWAP CONFIGURATION (Prevent OOM Freezes) ---
+    - name: check if swap file exists
+      stat:
+        path: /swapfile
+      register: swap_file_check
+
+    - name: create swap file
+      command: fallocate -l 2G /swapfile
+      when: not swap_file_check.stat.exists
+
+    - name: set permissions on swap file
+      file:
+        path: /swapfile
+        mode: '0600'
+
+    - name: format swap file
+      command: mkswap /swapfile
+      when: not swap_file_check.stat.exists
+
+    - name: enable swap file
+      command: swapon /swapfile
+      when: not swap_file_check.stat.exists
+
+    - name: add swap to fstab
+      lineinfile:
+        path: /etc/fstab
+        line: '/swapfile none swap sw 0 0'
+        state: present
+
+    # --- END SWAP CONFIGURATION ---
+
     - name: Fix broken apt sources (remove all conflicting docker lists)
       shell: |
         rm -f /etc/apt/sources.list.d/docker.list
