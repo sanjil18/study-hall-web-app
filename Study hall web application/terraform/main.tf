@@ -138,6 +138,17 @@ resource "aws_instance" "study_hall_server" {
   }
 }
 
-output "public_ip" {
-  value = aws_instance.study_hall_server.public_ip
+
+resource "aws_eip" "study_hall_ip" {
+  instance = aws_instance.study_hall_server.id
+  domain   = "vpc"
+  
+  tags = {
+    Name = "StudyHall-EIP"
+  }
 }
+
+output "public_ip" {
+  value = aws_eip.study_hall_ip.public_ip
+}
+
