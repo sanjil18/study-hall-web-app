@@ -20,7 +20,7 @@ const Footer = () => {
               Visit Faculty Website
             </a>
             <div className="text-xs text-slate-400">
-              <p>Email: ar@eng.ruh.ac.lk</p>
+              <p>Email: ardf@eng.ruh.ac.lk</p>
               <p>Contact: +(94) 912245765</p>
             </div>
           </div>
