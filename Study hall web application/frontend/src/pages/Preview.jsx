@@ -62,7 +62,7 @@ function Preview() {
                         👋 Welcome to the Future of Studying
                     </span>
                     <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-                        Faculty of Engineering <br />
+                        Sanjilraj Arulthasan <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
                             Study Hall Management
                         </span>
